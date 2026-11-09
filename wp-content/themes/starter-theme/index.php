@@ -1,19 +1,12 @@
+<?php get_header(); ?>
+
 <?php
-/**
- * Fallback requis par WordPress. Le rendu est géré par Bricks.
- *
- * @package starter-theme
- */
+if ( have_posts() ) :
+    while ( have_posts() ) : the_post();
+        the_title( '<h2>', '</h2>' );
+        the_content();
+    endwhile;
+endif;
+?>
 
-defined( 'ABSPATH' ) || exit;
-
-get_header();
-
-if ( have_posts() ) {
-	while ( have_posts() ) {
-		the_post();
-		the_content();
-	}
-}
-
-get_footer();
+<?php get_footer(); ?>

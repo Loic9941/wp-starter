@@ -5,6 +5,11 @@
     "license": "proprietary",
     "repositories": [
         {
+            "type": "path",
+            "url": "../wp-core",
+            "options": { "symlink": true }
+        },
+        {
             "type": "vcs",
             "url": "https://github.com/Loic9941/wp-core"
         }
