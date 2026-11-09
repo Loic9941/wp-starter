@@ -1,0 +1,21 @@
+# Composer
+/vendor/
+
+# Plugins installés par Composer (wp-content/plugins/ reste versionné
+# pour les plugins spécifiques au client)
+/wp-content/plugins/wp-core/
+
+# WordPress : config locale et contenus générés
+/wp-config.php
+/wp-content/uploads/
+/wp-content/cache/
+/wp-content/upgrade/
+/wp-content/debug.log
+.htaccess
+
+# Environnement / OS / IDE
+.env
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
