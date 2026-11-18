@@ -14,7 +14,7 @@
 /web/wp-content/cache/
 /web/wp-content/upgrade/
 /web/wp-content/debug.log
-.htaccess
+/web/.htaccess
 
 # Secrets (modèle versionné : .env.example)
 .env

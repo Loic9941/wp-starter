@@ -9,7 +9,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'BOILERPLATE_THEME_VERSION', '0.1.0' );
+define( 'STARTER_THEME_VERSION', '0.1.0' );
 
 /**
  * Supports du thème.
@@ -48,6 +48,6 @@ add_action( 'wp_enqueue_scripts', static function (): void {
 		'starter-theme',
 		get_stylesheet_uri(),
 		array(),
-		BOILERPLATE_THEME_VERSION
+		STARTER_THEME_VERSION
 	);
 } );

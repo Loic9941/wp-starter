@@ -1,0 +1,2 @@
+# WordPress est installé par Composer dans web/wp/ (pas dans le docroot).
+path: web/wp

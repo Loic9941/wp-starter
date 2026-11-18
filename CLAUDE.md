@@ -20,11 +20,13 @@ Le cœur WordPress est lui aussi une dépendance Composer (roots/wordpress),
 installé dans web/wp/ et jamais versionné. Mise à jour de WordPress :
 `ddev composer update roots/wordpress`.
 
-En dev local uniquement (jamais en CI/prod), composer.json peut utiliser
-un repository de type "path" pointant vers un wp-core cloné en local
-(symlink), pour itérer sans push/tag intermédiaire. En CI/prod, c'est
-toujours le repository "vcs" GitHub avec une contrainte de version taguée
-(ex: ^0.1) qui fait foi.
+Seul le repository "vcs" GitHub est déclaré dans composer.json (pas de
+repository "path"). Pour itérer sur wp-core en dev local sans tag
+intermédiaire : pousser sur la branche main de wp-core puis, en local
+uniquement, `ddev composer require loic9941/wp-core:dev-main` (puis
+`ddev composer update loic9941/wp-core` à chaque push). Ne jamais
+committer cette contrainte : en CI/prod, c'est toujours une version
+taguée (ex: ^0.1) qui fait foi.
 
 ## Architecture
 ```
@@ -32,9 +34,11 @@ wp-starter/
 ├── composer.json / vendor/   hors docroot
 ├── wp-config.php             config versionnée, sans secret (lit .env)
 ├── .env / .env.example       secrets (.env non versionné)
+├── wp-cli.yml                path: web/wp (sinon WP-CLI ne trouve pas WordPress)
 └── web/                      docroot (DDEV : docroot: web)
     ├── index.php             charge wp/wp-blog-header.php
-    ├── wp-config.php         stub → ../wp-config.php
+    ├── wp-config.php         stub → ../wp-config.php, puis ABSPATH et
+    │                         require wp-settings.php (exigé par WP-CLI)
     ├── wp/                   cœur WordPress (Composer, gitignored)
     └── wp-content/           thèmes, plugins, uploads
 ```
@@ -49,7 +53,7 @@ wp-starter/
   - templates/ : index, page, single, 404 (HTML de blocs)
   - parts/ : header et footer (déclarés dans theme.json → templateParts)
   - patterns/ : patterns PHP (hero, features, cta), catégorie "starter"
-    enregistrée dans functions.php ; remplacent l'ancien kit Bricks
+    enregistrée dans functions.php
   - functions.php : volontairement minimal (textdomain, wp-block-styles,
     catégorie de patterns, enqueue de style.css)
 - web/wp-content/plugins/ : trackable pour d'éventuels plugins spécifiques
@@ -68,5 +72,3 @@ wp-starter/
 - wp-config.php est versionné mais ne contient aucun secret : base de
   données, clés et salts viennent de l'environnement ou de .env
   (jamais versionné ; modèle dans .env.example)
-- Un script scripts/new-client.sh doit permettre de provisionner un
-  nouvel environnement local en une commande (clone, DDEV, wp-cli install)

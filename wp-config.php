@@ -13,6 +13,9 @@
  *   web/wp-content/ thèmes, plugins, uploads
  *
  * Ce fichier est chargé par web/wp-config.php : il reste hors du docroot.
+ * Il ne charge pas wp-settings.php lui-même : c'est web/wp-config.php qui
+ * le fait, car WP-CLI exige de trouver cette ligne dans le wp-config.php
+ * qu'il lit.
  *
  * @package WPStarter
  */
@@ -83,6 +86,4 @@ defined( 'WP_DEBUG' ) || define( 'WP_DEBUG', 'development' === $wp_env );
 define( 'WP_DEBUG_DISPLAY', 'development' === $wp_env );
 define( 'SCRIPT_DEBUG', 'development' === $wp_env );
 
-/* Fin de la configuration */
-defined( 'ABSPATH' ) || define( 'ABSPATH', $webroot_dir . '/wp/' );
-require_once ABSPATH . 'wp-settings.php';
+/* ABSPATH et le chargement de wp-settings.php sont dans web/wp-config.php. */
