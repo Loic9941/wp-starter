@@ -1,6 +1,6 @@
 {
     "name": "loic9941/wp-starter",
-    "description": "Boilerplate WordPress (wp-core + thème compatible Bricks).",
+    "description": "Boilerplate WordPress (wp-core + thème à blocs).",
     "type": "project",
     "license": "proprietary",
     "repositories": [
@@ -17,20 +17,24 @@
     "require": {
         "php": ">=8.1",
         "composer/installers": "^2.2",
-        "loic9941/wp-core": "^0.1"
+        "loic9941/wp-core": "^0.1",
+        "roots/wordpress": "^7.1",
+        "vlucas/phpdotenv": "^5.6"
     },
     "extra": {
+        "wordpress-install-dir": "web/wp",
         "installer-paths": {
-            "wp-content/plugins/wp-core/": ["loic9941/wp-core"],
-            "wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
-            "wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-            "wp-content/themes/{$name}/": ["type:wordpress-theme"]
+            "web/wp-content/plugins/wp-core/": ["loic9941/wp-core"],
+            "web/wp-content/plugins/{$name}/": ["type:wordpress-plugin"],
+            "web/wp-content/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
+            "web/wp-content/themes/{$name}/": ["type:wordpress-theme"]
         }
     },
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "composer/installers": true
+            "composer/installers": true,
+            "roots/wordpress-core-installer": true
         }
     },
     "minimum-stability": "stable",

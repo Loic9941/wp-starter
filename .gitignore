@@ -1,20 +1,25 @@
 # Composer
 /vendor/
 
-# Plugins installés par Composer (wp-content/plugins/ reste versionné
-# pour les plugins spécifiques au client)
-/wp-content/plugins/wp-core/
+# Cœur WordPress, installé par Composer (roots/wordpress)
+/web/wp/
 
-# WordPress : config locale et contenus générés
-/wp-config.php
-/wp-content/uploads/
-/wp-content/cache/
-/wp-content/upgrade/
-/wp-content/debug.log
+# Plugins installés par Composer (web/wp-content/plugins/ reste versionné
+# pour les plugins spécifiques au client)
+/web/wp-content/plugins/wp-core/
+
+# WordPress : fichiers générés
+/web/wp-config-ddev.php
+/web/wp-content/uploads/
+/web/wp-content/cache/
+/web/wp-content/upgrade/
+/web/wp-content/debug.log
 .htaccess
 
-# Environnement / OS / IDE
+# Secrets (modèle versionné : .env.example)
 .env
+
+# OS / IDE
 .DS_Store
 Thumbs.db
 .idea/
