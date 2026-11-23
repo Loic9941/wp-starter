@@ -22,7 +22,7 @@ defined( 'ABSPATH' ) || exit;
 		<!-- wp:buttons -->
 		<div class="wp-block-buttons">
 			<!-- wp:button -->
-			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button"><?php esc_html_e( 'Nous contacter', 'starter-theme' ); ?></a></div>
+			<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( 'Nous contacter', 'starter-theme' ); ?></a></div>
 			<!-- /wp:button -->
 		</div>
 		<!-- /wp:buttons -->

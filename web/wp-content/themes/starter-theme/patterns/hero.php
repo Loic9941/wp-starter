@@ -24,7 +24,7 @@ defined( 'ABSPATH' ) || exit;
 	<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"}} -->
 	<div class="wp-block-buttons">
 		<!-- wp:button {"backgroundColor":"accent","textColor":"background"} -->
-		<div class="wp-block-button"><a class="wp-block-button__link has-background-color has-accent-background-color has-text-color has-background wp-element-button"><?php esc_html_e( 'En savoir plus', 'starter-theme' ); ?></a></div>
+		<div class="wp-block-button"><a class="wp-block-button__link has-background-color has-accent-background-color has-text-color has-background wp-element-button" href="<?php echo esc_url( home_url( '/a-propos/' ) ); ?>"><?php esc_html_e( 'En savoir plus', 'starter-theme' ); ?></a></div>
 		<!-- /wp:button -->
 	</div>
 	<!-- /wp:buttons -->

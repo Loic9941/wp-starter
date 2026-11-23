@@ -86,4 +86,12 @@ defined( 'WP_DEBUG' ) || define( 'WP_DEBUG', 'development' === $wp_env );
 define( 'WP_DEBUG_DISPLAY', 'development' === $wp_env );
 define( 'SCRIPT_DEBUG', 'development' === $wp_env );
 
+/*
+ * En local, WordPress relit les fichiers du thème (patterns, theme.json)
+ * à chaque requête au lieu de les garder en cache. En production, ce
+ * cache n'est invalidé que par un changement de version du thème
+ * (en-tête Version de style.css).
+ */
+defined( 'WP_DEVELOPMENT_MODE' ) || define( 'WP_DEVELOPMENT_MODE', 'development' === $wp_env ? 'theme' : '' );
+
 /* ABSPATH et le chargement de wp-settings.php sont dans web/wp-config.php. */
