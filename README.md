@@ -73,7 +73,10 @@ token. Ça ne durera pas : configurez quand même le token.
    et ne survit pas à sa recréation (`ddev restart`). Il faut le
    redonner à chaque fois, et les commandes non interactives (scripts,
    CI) échouent. Pour récupérer un token saisi de cette façon et le
-   rendre permanent (Git Bash, depuis le dossier du projet) :
+   rendre permanent, **dans Git Bash et non dans PowerShell**, depuis
+   le dossier du projet. Dans PowerShell, `whoami` renvoie
+   `DOMAINE\utilisateur` et `>` écrit un fichier que Composer ne sait
+   pas lire.
 
    ```bash
    mkdir -p ~/.ddev/homeadditions/.composer
