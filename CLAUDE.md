@@ -50,14 +50,32 @@ wp-starter/
   - theme.json (schema v3) : source unique des design tokens (palette,
     tailles de police fluides, échelle d'espacements 20→70, largeurs
     720px / 1200px) et des styles globaux
-  - templates/ : index, page, single, 404 (HTML de blocs)
-  - parts/ : header et footer (déclarés dans theme.json → templateParts)
-  - patterns/ : patterns PHP (hero, features, cta), catégorie "starter"
-    enregistrée dans functions.php
+  - templates/ : index, page, single, 404, front-page (accueil),
+    page-a-propos et page-contact (HTML de blocs)
+  - parts/ : header et footer (déclarés dans theme.json → templateParts),
+    menu écrit en dur (navigation-link), pas de menu en base
+  - patterns/ : patterns PHP (hero, features, cta, about-intro,
+    contact-infos), catégorie "starter" enregistrée dans functions.php
   - functions.php : volontairement minimal (textdomain, wp-block-styles,
     catégorie de patterns, enqueue de style.css)
 - web/wp-content/plugins/ : trackable pour d'éventuels plugins spécifiques
   à un client ; wp-core y est installé par Composer, pas versionné
+- web/wp-content/mu-plugins/site-pages.php : crée les pages déclarées
+  (slug → titre) si elles manquent et règle les permaliens sur
+  /%postname%/. Chargé d'office, rien à activer.
+
+## Pages en code
+- Le contenu d'une page vit dans templates/page-{slug}.html + patterns ;
+  la page en base n'est qu'une coquille vide créée par site-pages.php
+- Ajouter une page : template, slug dans site_pages_list(), puis
+  incrémenter SITE_PAGES_VERSION
+- Toute modification faite dans l'éditeur de site (templates, parts) est
+  stockée en base et remplace le fichier : à réinitialiser le cas échéant
+- Cache des patterns : en production, un nouveau pattern n'apparaît
+  qu'après changement de `Version` dans style.css (et
+  STARTER_THEME_VERSION dans functions.php). En local,
+  WP_DEVELOPMENT_MODE=theme (wp-config.php, si WP_ENV=development)
+  désactive ce cache
 
 ## Conventions
 - Tout le code custom réutilisable (CPT, champs ACF, restrictions de
@@ -72,3 +90,9 @@ wp-starter/
 - wp-config.php est versionné mais ne contient aucun secret : base de
   données, clés et salts viennent de l'environnement ou de .env
   (jamais versionné ; modèle dans .env.example)
+
+## Documentation (docs/)
+- docs/wizard-wp-starter.md : journal des décisions, état actuel, pièges
+  rencontrés. À lire en premier ; respecter ses règles pour les agents.
+- docs/guide-nouveau-client.md : créer un site client, jusqu'à la mise en ligne
+- docs/guide-mise-a-jour-site.md : déployer une mise à jour sur un site livré
